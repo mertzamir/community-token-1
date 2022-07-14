@@ -53,7 +53,7 @@ export default function Home() {
 
               {/* Desktop */}
 
-              <div class="md:flex border-white border-8 border-solid rounded-3xl bg-white hidden ml-12">
+              <div className="md:flex border-white border-8 border-solid rounded-3xl bg-white hidden ml-12">
                 <Image
                   className="flex justify-center "
                   className="rounded-3xl "
