@@ -55,7 +55,6 @@ export default function Home() {
 
               <div className="md:flex border-white border-8 border-solid rounded-3xl bg-white hidden ml-12">
                 <Image
-                  className="flex justify-center "
                   className="rounded-3xl "
                   src="/sappy-seal.png"
                   alt="Sappy Seal NFT"
