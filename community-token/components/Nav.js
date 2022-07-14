@@ -36,7 +36,7 @@ export default function Nav() {
             <Image
               src="/community-token-logo.png"
               alt="Community Token"
-              width={140}
+              width={180}
               height={20}
             />
           </a>
