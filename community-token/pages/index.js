@@ -78,7 +78,7 @@ export default function Home() {
 
               {/* Mobile */}
 
-              <div className="flex justify-center mt-6">
+              <div className="flex justify-center mt-12">
                 <Link href="/explore">
                   <a className=" relative text-center text-black md:hidden">
                     <Image
