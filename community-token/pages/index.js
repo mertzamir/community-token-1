@@ -36,10 +36,10 @@ export default function Home() {
 
               {/* Mobile  */}
               <div className="flex justify-end mr-8 text-white mt-12 text-lg md:hidden">
-              New Featured Collection
-            </div>
+                New Featured Collection
+              </div>
               <div className="flex justify-center mt-4 mb-4  md:hidden">
-                /** Will replace with moralis web 3 ui kit */
+                {/** Will replace with moralis web 3 ui kit */}{" "}
                 <Image
                   className="rounded-3xl "
                   src="/sappy-seal.png"
