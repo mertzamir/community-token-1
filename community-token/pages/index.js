@@ -25,7 +25,7 @@ export default function Home() {
               New Featured Collection
             </div>
             <div className="md:grid grid-cols-3 gap-2 mt-8  items-center">
-              <div class="col-span-2 text-white md:text-[6vh] text-[4vh] font-bold leading-none">
+              <div className="col-span-2 text-white md:text-[6vh] text-[4vh] font-bold leading-none">
                 Create, join, <br />
                 and explore new
                 <p className="text-[#cdadff]">communities.</p>
@@ -38,7 +38,7 @@ export default function Home() {
               <div className="flex justify-end mr-8 text-white mt-12 text-lg md:hidden">
               New Featured Collection
             </div>
-              <div class="flex justify-center mt-4 mb-4 border-white border-8 border-solid rounded-3xl bg-white md:hidden">
+              <div className="flex justify-center mt-4 mb-4 border-white border-8 border-solid rounded-3xl bg-white md:hidden">
                 <Image
                   className="rounded-3xl "
                   src="/sappy-seal.png"
