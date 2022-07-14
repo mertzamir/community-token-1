@@ -24,7 +24,7 @@ export default function Home() {
             <div className="md:flex justify-end mr-8 text-white text-lg hidden">
               New Featured Collection
             </div>
-            <div className="md:grid grid-cols-3 gap-2 mt-8  items-center">
+            <div className="md:grid grid-cols-3 gap-2 mt-8 items-center">
               <div className="col-span-2 text-white md:text-[6vh] text-[4vh] font-bold leading-none">
                 Create, join, <br />
                 and explore new
@@ -55,7 +55,7 @@ export default function Home() {
 
               <div className="md:flex border-white border-8 border-solid rounded-3xl bg-white hidden ml-12">
                 <Image
-                  className="rounded-3xl "
+                  className="rounded-3xl"
                   src="/sappy-seal.png"
                   alt="Sappy Seal NFT"
                   width={300}
