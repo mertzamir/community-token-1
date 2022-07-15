@@ -54,7 +54,7 @@ export default function Account() {
       <div className={styles.container}>
         <main className={styles.main}>
           <div className="md:text-[6vh] text-[4vh] mt-12 text-white">
-            Welcome... Wallet Address on Community Name here 
+            Welcome... Wallet Address on Community Name here
           </div>
           <div className="xl:grid xl:grid-cols-3 gap-12 flex justify-center flex-wrap">
             {/** Community Owner Content */}
@@ -77,7 +77,7 @@ export default function Account() {
             ))}
 
             {/** Community Member Content */}
-            {communityMemberContentList.map((content) => (
+            {/* {communityMemberContentList.map((content) => (
               <Link key={content.id} href={content.link}>
                 <button className={contentStyle} key={content.id}>
                   {content.title}
@@ -92,8 +92,35 @@ export default function Account() {
                   </div>
                 </button>
               </Link>
-            ))}
+            ))} */}
           </div>
+          {/** Desktop */}
+          <Link href="/explore">
+            <a className="md:flex justify-center ml-8 mt-12 relative text-center text-black hidden ">
+              <Image
+                src="/button.png"
+                alt="Explore Button"
+                width={190}
+                height={60}
+              />
+              <div className="absolute inset-x-0.5 top-4  text-[#23024d] font-bold text-lg ">
+                Explore
+              </div>
+            </a>
+          </Link>
+          <Link href="/explore">
+            <a className=" relative text-center mt-12 text-black md:hidden">
+              <Image
+                src="/button.png"
+                alt="Explore Button"
+                width={140}
+                height={40}
+              />
+              <div className="absolute inset-x-0.5 top-2 text-[#23024d] font-bold text-sm">
+                Explore
+              </div>
+            </a>
+          </Link>
         </main>
         <Footer />
       </div>
