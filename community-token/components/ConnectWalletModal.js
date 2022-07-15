@@ -44,7 +44,7 @@ export default function ConnectWalletModal({ closeModal }) {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              <span class="sr-only">Close modal</span>
+              <span className="sr-only">Close modal</span>
             </button>
 
             <div className="py-4 px-6 rounded-t border-b dark:border-gray-600">
@@ -191,7 +191,7 @@ export default function ConnectWalletModal({ closeModal }) {
                     <span className="flex ml-3 whitespace-nowrap w-28">
                       MetaMask
                     </span>
-                    <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-white bg-gray-200 rounded dark:bg-[#23024d] dark:text-white">
+                    <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-white bg-gray-200 rounded dark:bg-[#23024d] dark:text-white">
                       Popular
                     </span>
                   </button>
