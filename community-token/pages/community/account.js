@@ -54,10 +54,10 @@ export default function Account() {
       <div className={styles.container}>
         <main className={styles.main}>
           <div className="md:text-[6vh] text-[4vh] mt-12 text-white">
-            My Community
+            Welcome... Wallet Address on Community Name here 
           </div>
           <div className="xl:grid xl:grid-cols-3 gap-12 flex justify-center flex-wrap">
-            {/** Owner Content */}
+            {/** Community Owner Content */}
 
             {communityOwnerContentList.map((content) => (
               <Link key={content.id} href={content.link}>
@@ -76,7 +76,7 @@ export default function Account() {
               </Link>
             ))}
 
-            {/** Member Content */}
+            {/** Community Member Content */}
             {communityMemberContentList.map((content) => (
               <Link key={content.id} href={content.link}>
                 <button className={contentStyle} key={content.id}>
