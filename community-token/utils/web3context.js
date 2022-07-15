@@ -11,7 +11,6 @@ export const Web3Provider = ({ children }) => {
   const metaMaskLogin = async () => {
     console.log("hello");
     try {
-        if (user) setIsConnected(true)
       await authenticate();
     } catch (e) {
       console.error(e);
