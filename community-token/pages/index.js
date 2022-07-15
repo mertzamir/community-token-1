@@ -19,26 +19,26 @@ export default function Home() {
         </Head>
 
         <main className={styles.main}>
-          <div className="md:mt-24">
+          <div className="lg:mt-24">
             {/* Desktop  */}
-            <div className="md:flex justify-end mr-8 text-white text-lg hidden">
+            <div className="lg:flex justify-end mr-8 text-white text-lg hidden">
               New Featured Collection
             </div>
-            <div className="md:grid grid-cols-3 gap-2 mt-8 items-center">
-              <div className="col-span-2 text-white md:text-[6vh] text-[4vh] font-bold leading-none">
+            <div className="lg:grid grid-cols-3 gap-2 xl:mt-8 items-center">
+              <div className="col-span-2 text-white xl:text-[6vh] lg:text-[6.5vh] md:text-5xl lg:text-left  text-center text-[4vh] font-bold leading-none">
                 Create, join, <br />
                 and explore new
                 <p className="text-[#cdadff]">communities.</p>
-                <p className="mt-4 md:text-[3vh] text-[2vh] font-thin text-white">
+                <p className="mt-4 lg:text-[3vh] text-xl text-[2vh] lg:text-left text-center font-thin text-white md:mb-8">
                   For creators and by creators
                 </p>
               </div>
 
               {/* Mobile  */}
-              <div className="flex justify-end mr-8 text-white mt-12 text-lg md:hidden">
+              <div className="text-center text-white mt-12  text-lg md:hidden">
                 New Featured Collection
               </div>
-              <div className="flex justify-center mt-4 mb-4  md:hidden">
+              <div className="flex justify-center mt-4 mb-4  lg:hidden">
                 {/** Will replace with moralis web 3 ui kit */}{" "}
                 <Image
                   className="rounded-3xl "
@@ -48,13 +48,13 @@ export default function Home() {
                   height={300}
                 />
               </div>
-              <div className="flex justify-end mr-24 text-white text-lg md:hidden">
+              <div className="text-center  text-white text-lg md:hidden">
                 Sappy Seals
               </div>
 
               {/* Desktop */}
 
-              <div className="md:flex border-white border-8 border-solid rounded-3xl bg-white hidden ml-12">
+              <div className="lg:flex rounded-3xl hidden lg:ml-18">
                 <Image
                   className="rounded-3xl"
                   src="/sappy-seal.png"
