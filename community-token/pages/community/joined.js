@@ -2,7 +2,7 @@ import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 
-export default function JoinCommunity () {
+export default function Joined() {
     return (
         <div className="bg-[#22014d]">
         <div className="">

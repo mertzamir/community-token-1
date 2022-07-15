@@ -3,6 +3,7 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 
 export default function Explore() {
+    
   return (
     <div className="bg-[#22014d]">
       <div className="">
@@ -13,7 +14,7 @@ export default function Explore() {
           <div className="md:text-[6vh] text-[4vh] mt-12 text-white">
             Explore Communities
           </div>
-          
+
         </main>
         <Footer />
       </div>
