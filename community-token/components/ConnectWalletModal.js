@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { Web3Context } from "../utils/web3context";
 
 export default function ConnectWalletModal({ closeModal }) {
-  const { isAuthenticated, metaMaskLogin, walletConnectLogin } = useContext(Web3Context);
+  const { isAuthenticated, metaMaskLogin, walletConnectLogin } =
+    useContext(Web3Context);
   return (
     <div>
       {!isAuthenticated && (
@@ -45,8 +46,8 @@ export default function ConnectWalletModal({ closeModal }) {
 
               <div className="p-6">
                 <p className="text-sm font-normal text-gray-500 dark:text-white">
-                  Connect with one of our available wallet providers or create a
-                  new one.
+                  Connect with one of our available wallet providers. If you're
+                  using metamask on your mobile device use the metamask browser.
                 </p>
                 <ul className="my-4 space-y-3">
                   <li className="flex justify-center">
