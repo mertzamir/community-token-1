@@ -1,13 +1,10 @@
-import { useContext } from "react";
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { Web3Context } from "../../utils/web3context";
 
 export default function Account() {
-  const { user } = useContext(Web3Context);
 
   const communityOwnerContentList = [
     {
@@ -58,7 +55,7 @@ export default function Account() {
       <div className={styles.container}>
         <main className={styles.main}>
           <div className="md:text-[4vh] text-[4vh] mt-12 text-white">
-            Welcome {user.get("ethAddress")}
+            Welcome
           </div>
           <div className="xl:grid xl:grid-cols-3 gap-12 flex justify-center flex-wrap">
             {/** Community Owner Content */}
