@@ -46,7 +46,7 @@ export default function ConnectWalletModal({ closeModal }) {
 
               <div className="p-6">
                 <p className="text-sm font-normal text-gray-500 dark:text-white">
-                  Connect with one of our available wallet providers. If you're
+                  Connect with one of our available wallet providers. If you&apos;re
                   using metamask on your mobile device use the metamask browser.
                 </p>
                 <ul className="my-4 space-y-3">
