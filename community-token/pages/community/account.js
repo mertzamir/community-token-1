@@ -60,7 +60,7 @@ export default function Account() {
             {/** Owner Content */}
 
             {communityOwnerContentList.map((content) => (
-              <Link href={content.link}>
+              <Link key={content.id} href={content.link}>
                 <button className={contentStyle} key={content.id}>
                   {content.title}
                   <div className={buttonStyle} key={content.id}>
@@ -78,7 +78,7 @@ export default function Account() {
 
             {/** Member Content */}
             {communityMemberContentList.map((content) => (
-              <Link href={content.link}>
+              <Link key={content.id} href={content.link}>
                 <button className={contentStyle} key={content.id}>
                   {content.title}
                   <div className={buttonStyle} key={content.id}>
