@@ -6,7 +6,7 @@ export default function Nav() {
     <nav className="px-8 sticky top-0 py-4 ">
       <div className="md:flex justify-between items-center h-16 hidden">
         <Link href="/">
-          <a className="order-first">
+          <a className="">
             <Image
               src="/community-token-logo.png"
               alt="Community Token"
@@ -16,14 +16,14 @@ export default function Nav() {
           </a>
         </Link>
         <Link href="/launch">
-          <a className="md:flex order-last relative text-center text-black hidden">
+          <a className="md:flex relative text-center hidden">
             <Image
               src="/button.png"
               alt="Launch App Button"
               width={190}
               height={60}
             />
-            <div className="absolute inset-x-0.5 top-4 text-[#23024d] font-bold text-lg">
+            <div className="absolute inset-x-0.5 top-4 text-[#23024d] font-bold text-lg ">
               Launch App
             </div>
           </a>

@@ -10,6 +10,7 @@ module.exports = {
       },
       backgroundImage: () => ({
         "home-background": "url('/home-background.webp')",
+        "launch-background": "url('/launch-background.png')"
       }),
     },
   },
