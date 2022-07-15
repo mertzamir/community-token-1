@@ -63,8 +63,9 @@ export default function Account() {
               <Link href={content.link}>
                 <button className={contentStyle} key={content.id}>
                   {content.title}
-                  <div className={buttonStyle}>
+                  <div className={buttonStyle} key={content.id}>
                     <Image
+                      key={content.id}
                       src={buttonImg}
                       alt="Button"
                       width={100}
@@ -80,8 +81,9 @@ export default function Account() {
               <Link href={content.link}>
                 <button className={contentStyle} key={content.id}>
                   {content.title}
-                  <div className={buttonStyle}>
+                  <div className={buttonStyle} key={content.id}>
                     <Image
+                      key={content.id}
                       src={buttonImg}
                       alt="Button"
                       width={100}
