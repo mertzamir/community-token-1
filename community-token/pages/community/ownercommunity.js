@@ -2,7 +2,7 @@ import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 
-export default function JoinCommunity () {
+export default function OwnerCommunity () {
     return (
         <div className="bg-[#22014d]">
         <div className="">
@@ -11,7 +11,7 @@ export default function JoinCommunity () {
         <div className={styles.container}>
           <main className={styles.main}>
             <div className="md:text-[6vh] text-[4vh] mt-12 text-white">
-              Joined Communities
+              My Community
             </div>
             
           </main>
