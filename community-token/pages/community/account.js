@@ -12,12 +12,12 @@ export default function Account() {
       link: "/community/rewards",
     },
     {
-      id: "my-community",
+      id: "mycommunity",
       title: "View My Community",
       link: "/community",
     },
     {
-      id: "joined-communities",
+      id: "joinedcommunities",
       title: "View Joined Communites",
       link: "/community/joined",
     },
@@ -25,7 +25,7 @@ export default function Account() {
 
   const communityMemberContentList = [
     {
-      id: "create-new-community",
+      id: "createnewcommunity",
       title: "Create New Community",
       link: "/community/createnew",
     },
@@ -35,7 +35,7 @@ export default function Account() {
       link: "/community/rewards",
     },
     {
-      id: "joined-communities",
+      id: "joinedcommunities",
       title: "View Joined Communites",
       link: "/community/joined",
     },
