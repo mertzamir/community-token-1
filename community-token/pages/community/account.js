@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import { Web3Context } from "../../utils/web3context";
 
 export default function Account() {
+  const { user } = useContext(Web3Context);
+
   const communityOwnerContentList = [
     {
       id: "rewards",
@@ -53,8 +57,8 @@ export default function Account() {
       </div>
       <div className={styles.container}>
         <main className={styles.main}>
-          <div className="md:text-[6vh] text-[4vh] mt-12 text-white">
-            Welcome... Wallet Address on Community Name here
+          <div className="md:text-[4vh] text-[4vh] mt-12 text-white">
+            Welcome {user.get("ethAddress")}
           </div>
           <div className="xl:grid xl:grid-cols-3 gap-12 flex justify-center flex-wrap">
             {/** Community Owner Content */}
