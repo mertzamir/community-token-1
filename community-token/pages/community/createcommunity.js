@@ -19,7 +19,7 @@ export default function CreateCommunity() {
             </label>
             <input
               className="rounded-2xl  h-12 pl-2 text-center"
-              minlength="1"
+              minLength="1"
               maxLength="30"
               type="text"
               required
@@ -29,7 +29,7 @@ export default function CreateCommunity() {
             </label>
             <textarea
               className="rounded-2xl h-24 pl-2"
-              minlength="10"
+              minLength="10"
               maxLength="80"
               type="text"
               required
@@ -43,9 +43,21 @@ export default function CreateCommunity() {
               className="cursor-pointer block w-full text-sm text-white file:mr-4 file:py-2 md:file:px-8 file:px-2 file:py-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-[#23024d] hover:file:bg-gray-100"
             />
             <div className="mt-8">
-              <button type="submit" className="md:px-36 px-16 font-bold py-4 bg-white rounded-full text-[#23024d] hover:bg-gray-100">
+              <button
+                type="submit"
+                className="md:px-36 px-16 font-bold py-4 bg-white rounded-full text-[#23024d] hover:bg-gray-100"
+              >
                 Submit
               </button>
+            </div>
+
+            <div className="mt-8 block cursor-pointer text-center text-white hover:underline">
+              Invite Community Token Discord Bot
+              <a
+                className="bg-white"
+                target="_blank"
+                href="https://discord.com/api/oauth2/authorize?client_id=996545602747891803&permissions=534757505088&scope=bot"
+              />
             </div>
           </form>
         </main>

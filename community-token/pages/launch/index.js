@@ -4,11 +4,9 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import ConnectWalletModal from "../../components/ConnectWalletModal";
-import { Web3Context } from "../../utils/web3context";
 
 export default function Launch() {
   const [openModal, setOpenModal] = useState();
-  const isAuthenticated = useContext(Web3Context);
 
   return (
     <div className="bg-launch-background bg-cover bg-center">

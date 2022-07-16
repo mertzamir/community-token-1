@@ -9,7 +9,6 @@ export const Web3Provider = ({ children }) => {
   const { authenticate, user, logout, isAuthenticated} = useMoralis();
 
   const metaMaskLogin = async () => {
-    console.log("hello");
     try {
       await authenticate();
     } catch (e) {
