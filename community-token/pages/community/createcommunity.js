@@ -17,13 +17,13 @@ export default function CreateCommunity() {
             <label className="block cursor-pointer text-center text-white">
               Name
             </label>
-            <input className="rounded-2xl  h-12 pl-2 text-center" maxlength="30" type="text"></input>
+            <input className="rounded-2xl  h-12 pl-2 text-center" maxLength="30" type="text"></input>
             <label className="block cursor-pointer text-center text-white">
               Short Description
             </label>
-            <textarea className="rounded-2xl h-24 pl-2" maxlength="80" type="text"></textarea>
+            <textarea className="rounded-2xl h-24 pl-2" maxLength="80" type="text"></textarea>
             <label className="block cursor-pointer text-center text-white">
-              Upload image
+              Upload Logo
             </label>
             <span className="sr-only">Choose File</span>
             <input

@@ -1,6 +1,6 @@
 import { create } from "ipfs-http-client";
 
-export default function handler(req, res) {
+export default async function handler (req, res) {
   /* init */
   const Moralis = require("moralis/node");
   const serverUrl = process.env.SERVER_URL;
