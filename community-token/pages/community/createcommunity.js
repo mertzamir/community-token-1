@@ -52,7 +52,7 @@ export default function CreateCommunity() {
             </div>
           </form>
           <a
-            target="_blank"
+            target="_blank" rel="noreferrer"
             href="https://discord.com/api/oauth2/authorize?client_id=996115272677195789&permissions=8&scope=applications.commands+bot"
           >
             <button className="mt-8 mb-8 block cursor-pointer text-center text-white hover:underline">
