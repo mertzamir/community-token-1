@@ -10,7 +10,7 @@ export default function CreateCommunity() {
       </div>
       <div className={styles.container}>
         <main className={styles.main}>
-          <div className="md:mb-12 mb-8 lg:mb-24 lg:text-[5vh] md:text-[3vh] text-[20px] text-center lg:mt-12 lg:mb-4 md:mt-28 md:mb-[10px] mt-12  text-white">
+          <div className="md:mb-16 mb-8 lg:mb-24 lg:text-[5vh] md:text-[3vh] text-[20px] text-center lg:mt-12 lg:mb-12 md:mt-28 md:mb-[10px] mt-12  text-white">
             Create New Community
           </div>
           <form className="bg-[#23024d] md:px-24 md:py-12 px-12 py-12 rounded-2xl flex justify-center grid grid-cols-1 gap-4 opacity-75 border-4 border-white">
@@ -50,16 +50,15 @@ export default function CreateCommunity() {
                 Submit
               </button>
             </div>
-
-            <div className="mt-8 block cursor-pointer text-center text-white hover:underline">
-              Invite Community Token Discord Bot
-              <a
-                className="bg-white"
-                target="_blank"
-                href="https://discord.com/api/oauth2/authorize?client_id=996545602747891803&permissions=534757505088&scope=bot"
-              />
-            </div>
           </form>
+          <a
+            target="_blank"
+            href="https://discord.com/api/oauth2/authorize?client_id=996115272677195789&permissions=8&scope=applications.commands+bot"
+          >
+            <button className="mt-8 mb-8 block cursor-pointer text-center text-white hover:underline">
+              Invite Community Token Discord Bot
+            </button>
+          </a>
         </main>
       </div>
     </div>
