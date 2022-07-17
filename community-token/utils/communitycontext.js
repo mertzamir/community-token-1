@@ -12,7 +12,7 @@ export const CommunityProvider = ({ children }) => {
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
   const { address } = useContext(Web3Context);
-console.log(address)
+
   const submitCreateCommunityForm = async (e) => {
     try {
       e.preventDefault();
