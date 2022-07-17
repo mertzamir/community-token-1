@@ -67,7 +67,7 @@ export default function CreateCommunity() {
           ) : (
             <div className="bg-[#23024d] md:px-24 md:py-12 px-12 py-12 rounded-2xl flex justify-center grid grid-cols-1 gap-4 opacity-75 border-4 border-white">
               <p className="text-center text-white">
-                You've successfully created a community. Please invite our discord bot.
+                You&apos;ve successfully created a community. Please invite our discord bot.
               </p>
               <a className="flex justify-center"
                 target="_blank"
