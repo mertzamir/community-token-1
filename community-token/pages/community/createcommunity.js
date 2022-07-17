@@ -1,6 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import { useCommunityContext } from "../../utils/communitycontext";
+
 export default function CreateCommunity() {
   const {
     success,
