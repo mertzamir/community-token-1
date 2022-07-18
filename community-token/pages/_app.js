@@ -6,8 +6,8 @@ import { CommunityProvider } from "../utils/communitycontext";
 function MyApp({ Component, pageProps }) {
   return (
     <MoralisProvider
-      serverUrl="https://lzjh0bzuprum.usemoralis.com:2053/server"
-      appId="Fw1ZS0v9NyFKZAVNZIelFoDd1jQD1IDccm8KgGBp"
+      serverUrl="https://sy1iyrlwxh8o.usemoralis.com:2053/server"
+      appId="8i2wqq5PM876L0GYRJ2jKUEKmUUUKHVd9XiyD1tJ"
     >
       <Web3Provider>
         <CommunityProvider>
