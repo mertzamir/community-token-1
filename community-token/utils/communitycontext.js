@@ -12,7 +12,8 @@ export const CommunityProvider = ({ children }) => {
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
   const { user } = useMoralis();
-  const currentUser = user.get("ethAddress");
+  const currentUser =
+    user !== null || user != "undefined" ? user.get("ethAddress") : "";
 
   const submitCreateCommunityForm = async (e) => {
     try {
