@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
-import { Web3Context } from "../../utils/web3context";
+import { useWeb3Context } from "../../utils/web3context";
 
 export default function CreateCommunity() {
   const {
@@ -10,7 +10,7 @@ export default function CreateCommunity() {
     handleDescription,
     handleLogoURL,
     submitCreateCommunityForm,
-  } = useContext(Web3Context);
+  } = useWeb3Context();
   return (
     <div className="bg-community-background bg-cover bg-center">
       <div className="">

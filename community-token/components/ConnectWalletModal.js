@@ -1,7 +1,7 @@
-import { Web3Context } from "../utils/web3context";
+import { useWeb3Context } from "../utils/web3context";
 
 export default function ConnectWalletModal({ closeModal }) {
-  const { metaMaskLogin, walletConnectLogin } = useContext(Web3Context);
+  const { metaMaskLogin, walletConnectLogin } = useWeb3Context();
   return (
     <div>
       <div
