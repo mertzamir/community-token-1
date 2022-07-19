@@ -62,10 +62,10 @@ export const CommunityProvider = ({ children }) => {
     // converting file to an array that the buffer can understand
     reader.readAsArrayBuffer(file);
 
-    reader.onload = () => {
-      //gives us the result which will be an arry of data to pass into the buffer
-      setLogoURL(Buffer(reader.result));
-    };
+    // reader.onload = () => {
+    //   //gives us the result which will be an arry of data to pass into the buffer
+    //   setLogoURL(Buffer(reader.result));
+    // };
   };
 
   return (
