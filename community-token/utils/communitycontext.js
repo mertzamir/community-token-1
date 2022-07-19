@@ -11,10 +11,10 @@ export const CommunityProvider = ({ children }) => {
   const [logoURL, setLogoURL] = useState([]);
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
-  const { user } = useContext(Web3Context);
+  // const { user } = useContext(Web3Context);
 
-  const currentUser =
-    user !== null || user != "undefined" ? user.get("ethAddress") : "";
+  // const currentUser =
+  //   user !== null || user != "undefined" ? user.get("ethAddress") : "";
 
   const submitCreateCommunityForm = async (e) => {
     try {
@@ -24,7 +24,7 @@ export const CommunityProvider = ({ children }) => {
         name,
         description,
         logoURL,
-        currentUser,
+        // currentUser,
       };
 
       const response = await fetch("/api/new-community", {
