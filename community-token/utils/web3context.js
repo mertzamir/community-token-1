@@ -12,6 +12,7 @@ export const Web3Provider = ({ children }) => {
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
   const { authenticate, logout, isAuthenticated, user } = useMoralis();
+  const currentUser = isAuthenticated ? user.get("ethAddress") : "";
 
   const metaMaskLogin = async () => {
     try {
@@ -42,7 +43,7 @@ export const Web3Provider = ({ children }) => {
         name,
         description,
         logoURL,
-        // currentUser,
+        currentUser,
       };
 
       const response = await fetch("/api/new-community", {
