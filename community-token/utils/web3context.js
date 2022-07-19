@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useMoralis } from "react-moralis";
 
 export const Web3Context = createContext(null);
@@ -6,7 +6,7 @@ export const Web3Context = createContext(null);
 export const useWeb3Context = () => useContext(Web3Context);
 
 export const Web3Provider = ({ children }) => {
-  const { authenticate, logout, isAuthenticated } = useMoralis();
+  const { authenticate, logout, isAuthenticated, user } = useMoralis();
 
   const metaMaskLogin = async () => {
     try {
@@ -22,15 +22,19 @@ export const Web3Provider = ({ children }) => {
     } catch (e) {
       console.error(e);
     }
+    ``;
   };
 
   const logoutWallet = async () => {
     await logout();
   };
 
+  useEffect(() => {}, [user]);
+
   return (
     <Web3Context.Provider
       value={{
+        user,
         isAuthenticated,
         metaMaskLogin,
         walletConnectLogin,

@@ -1,17 +1,18 @@
 import { createContext, useState, useContext } from "react";
-import { useMoralis } from "react-moralis";
+import { Web3Context } from "./web3context";
 
 export const CommunityContext = createContext(null);
 
 export const useCommunityContext = () => useContext(CommunityContext);
 
 export const CommunityProvider = ({ children }) => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState(null);
   const [description, setDescription] = useState("");
   const [logoURL, setLogoURL] = useState([]);
-  const [successMessage, setSuccessMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
-  const { user } = useMoralis();
+  const { user } = useContext(Web3Context);
+
   const currentUser =
     user !== null || user != "undefined" ? user.get("ethAddress") : "";
 
