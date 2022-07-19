@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import { Web3Context } from "../utils/web3context";
+import { useMoralis } from "react-moralis";
 
 export const CommunityContext = createContext(null);
 
@@ -11,7 +11,8 @@ export const CommunityProvider = ({ children }) => {
   const [logoURL, setLogoURL] = useState();
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
-  const { address } = useContext(Web3Context);
+  const { user } = useMoralis();
+  const currentUser = user.get("ethAddress");
 
   const submitCreateCommunityForm = async (e) => {
     try {
@@ -21,8 +22,7 @@ export const CommunityProvider = ({ children }) => {
         name,
         description,
         logoURL,
-        address,
-        //   cloneAddress,
+        currentUser,
       };
 
       const response = await fetch("/api/new-community", {
@@ -51,7 +51,19 @@ export const CommunityProvider = ({ children }) => {
   };
 
   const handleLogoURL = (e) => {
-    setLogoURL(e.target.value);
+    e.preventDefault();
+
+    // getting the files uploaded
+    const file = e.target.files[0];
+    // getting the file readert
+    const reader = new window.FileReader();
+    // converting file to an array that the buffer can understand
+    reader.readAsArrayBuffer(file);
+
+    reader.onload = () => {
+      //gives us the result which will be an arry of data to pass into the buffer
+      setLogoURL(Buffer(reader.result));
+    };
   };
 
   return (

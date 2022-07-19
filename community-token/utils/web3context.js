@@ -6,8 +6,7 @@ export const Web3Context = createContext(null);
 export const useWeb3Context = () => useContext(Web3Context);
 
 export const Web3Provider = ({ children }) => {
-  const [address, setAddress] = useState();
-  const { authenticate, user, logout, isAuthenticated } = useMoralis();
+  const { authenticate, logout, isAuthenticated } = useMoralis();
 
   const metaMaskLogin = async () => {
     try {
@@ -29,15 +28,9 @@ export const Web3Provider = ({ children }) => {
     await logout();
   };
 
-  useEffect(() => {
-    if (user) setAddress(user.get("ethAddress"));
-  }, [address]);
-
   return (
     <Web3Context.Provider
       value={{
-        user,
-        address,
         isAuthenticated,
         metaMaskLogin,
         walletConnectLogin,
