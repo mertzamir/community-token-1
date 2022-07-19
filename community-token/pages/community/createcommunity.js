@@ -1,6 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
-import { useCommunityContext } from "../../utils/communitycontext";
+import { CommunityContext } from "../../utils/communitycontext";
 
 export default function CreateCommunity() {
   const {
@@ -9,7 +9,7 @@ export default function CreateCommunity() {
     handleDescription,
     handleLogoURL,
     submitCreateCommunityForm,
-  } = useCommunityContext();
+  } = useContext(CommunityContext)
   return (
     <div className="bg-community-background bg-cover bg-center">
       <div className="">

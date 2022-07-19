@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useWeb3Context } from "../utils/web3context";
+import { Web3Context } from "../utils/web3context";
 
 export default function Nav() {
-  const { isAuthenticated, logoutWallet } = useWeb3Context();
+  const { isAuthenticated, logoutWallet } = useContext(Web3Context);
 
   return (
     <nav className="px-8 sticky top-0 py-4 ">
