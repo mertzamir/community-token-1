@@ -6,10 +6,10 @@ export const CommunityContext = createContext(null);
 export const useCommunityContext = () => useContext(CommunityContext);
 
 export const CommunityProvider = ({ children }) => {
-  const [name, setName] = useState();
-  const [description, setDescription] = useState();
-  const [logoURL, setLogoURL] = useState();
-  const [successMessage, setSuccessMessage] = useState();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [logoURL, setLogoURL] = useState([]);
+  const [successMessage, setSuccessMessage] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user } = useMoralis();
   const currentUser =
