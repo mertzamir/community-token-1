@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Web3Context } from "../utils/web3context";
@@ -33,7 +34,10 @@ export default function Nav() {
             </a>
           </Link>
         ) : (
-          <button onClick={logoutWallet} className="md:flex relative text-center hidden">
+          <button
+            onClick={logoutWallet}
+            className="md:flex relative text-center hidden"
+          >
             <Image
               src="/button.png"
               alt="Launch App Button"
