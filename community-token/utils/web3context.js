@@ -5,6 +5,20 @@ export const Web3Context = createContext(null);
 
 export const useWeb3Context = () => useContext(Web3Context);
 
+// as soon as they submit the form youll send a GET request to discord bot
+// check for success with discord bot
+// if successfully create community make call to smart contract
+// check event logs for clone data
+// get transaction recipt to get the clone smart conract address
+// then send get resuest to new communiy api
+// then send final post with user data
+// put everything in components
+
+// dynamic pages
+// view community page
+// joined page
+// rewards? now view communiy
+
 export const Web3Provider = ({ children }) => {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState("");
@@ -14,6 +28,12 @@ export const Web3Provider = ({ children }) => {
   const { authenticate, logout, isAuthenticated, user } = useMoralis();
   const currentUser = isAuthenticated ? user.get("ethAddress") : "";
 
+  const [collectionName, setCollectionName] = useState();
+  const [collectionDescription, setCollectionDescription] = useState();
+  const [collectionJPEG, setCollectionJPEG] = useState();
+  const [collectionTotalSupply, setCollectionTotalSuppy] = useState();
+
+  // Wallet configuration
   const metaMaskLogin = async () => {
     try {
       await authenticate();
@@ -35,6 +55,33 @@ export const Web3Provider = ({ children }) => {
     await logout();
   };
 
+  // Image Buffer Generator
+  const captureImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new window.FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onload = () => {
+      return Buffer(reader.result);
+    };
+  };
+
+  // Create Commmunity
+  const handleName = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+
+  const handleDescription = (e) => {
+    e.preventDefault();
+    setDescription(e.target.value);
+  };
+
+  const handleLogoURL = (e) => {
+    e.preventDefault();
+    setLogoURL(captureImage(e));
+  };
+
   const submitCreateCommunityForm = async (e) => {
     try {
       e.preventDefault();
@@ -44,6 +91,7 @@ export const Web3Provider = ({ children }) => {
         description,
         logoURL,
         currentUser,
+        clone,
       };
 
       const response = await fetch("/api/new-community", {
@@ -63,28 +111,43 @@ export const Web3Provider = ({ children }) => {
     }
   };
 
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
+  // Create Collection
 
-  const handleDescription = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleLogoURL = (e) => {
+  const handleCollectionName = (e) => {
     e.preventDefault();
+    setCollectionName(e.target.value);
+  };
 
-    // getting the files uploaded
-    const file = e.target.files[0];
-    // getting the file readert
-    const reader = new window.FileReader();
-    // converting file to an array that the buffer can understand
-    reader.readAsArrayBuffer(file);
+  const handleCollectionDescription = (e) => {
+    e.preventDefault();
+    setCollectionDescription(e.target.value);
+  };
 
-    reader.onload = () => {
-      //   //gives us the result which will be an arry of data to pass into the buffer
-      setLogoURL(Buffer(reader.result));
-    };
+  const handleCollectionJPEG = (e) => {
+    e.preventDefault();
+    setCollectionJPEG(e.target.value);
+  };
+
+  const handleCollectionTotalSupply = (e) => {
+    e.preventDefault();
+    setCollectionTotalSuppy(e.target.value);
+  };
+
+  const submitAddCollectionForm = async (e) => {
+    try {
+      e.preventDefault();
+
+      const AddCollectionForm = {
+        collectionName,
+        collectionDescription,
+        collectionJPEG,
+        collectionTotalSupply,
+      };
+
+      console.log(AddCollectionForm);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {}, [user]);
@@ -103,6 +166,11 @@ export const Web3Provider = ({ children }) => {
         loading,
         successMessage,
         submitCreateCommunityForm,
+        handleCollectionName,
+        handleCollectionDescription,
+        handleCollectionTotalSupply,
+        handleCollectionJPEG,
+        submitAddCollectionForm,
       }}
     >
       {children}
