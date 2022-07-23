@@ -4,6 +4,7 @@ import Nav from "../../components/Nav";
 import { useWeb3Context } from "../../utils/web3context";
 
 export default function CreateCollection() {
+  // onsubmit form + is it dynamic?
   const {
     success,
     handleCollectionName,

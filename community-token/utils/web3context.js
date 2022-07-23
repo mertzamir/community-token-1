@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useWeb3Contract } from "react-moralis";
+import { router } from "next/router";
+import { cloneFactoryabi } from "../components/smart-contract-info";
 
 export const Web3Context = createContext(null);
 
@@ -20,12 +22,16 @@ export const useWeb3Context = () => useContext(Web3Context);
 // rewards? now view communiy
 
 export const Web3Provider = ({ children }) => {
+  const { runContractFunction } = useWeb3Contract();
+
   const [name, setName] = useState(null);
   const [description, setDescription] = useState("");
   const [logoURL, setLogoURL] = useState([]);
+  const [communityClone, setCommunityClone] = useState("");
+  const [txReceipt, setTxReceipt] = useState(null);
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
-  const { authenticate, logout, isAuthenticated, user } = useMoralis();
+  const { authenticate, logout, isAuthenticated, user, Moralis } = useMoralis();
   const currentUser = isAuthenticated ? user.get("ethAddress") : "";
 
   const [collectionName, setCollectionName] = useState();
@@ -37,6 +43,7 @@ export const Web3Provider = ({ children }) => {
   const metaMaskLogin = async () => {
     try {
       await authenticate();
+      router.push("/community/account");
     } catch (e) {
       console.error(e);
     }
@@ -45,6 +52,7 @@ export const Web3Provider = ({ children }) => {
   const walletConnectLogin = async () => {
     try {
       await authenticate({ provider: "walletconnect" });
+      router.push("/community/account");
     } catch (e) {
       console.error(e);
     }
@@ -53,6 +61,7 @@ export const Web3Provider = ({ children }) => {
 
   const logoutWallet = async () => {
     await logout();
+    router.push("/");
   };
 
   // Image Buffer Generator
@@ -86,26 +95,54 @@ export const Web3Provider = ({ children }) => {
     try {
       e.preventDefault();
       setLoading(true);
-      const createCommunityForm = {
-        name,
-        description,
-        logoURL,
-        currentUser,
-        clone,
-      };
+      console.log(name);
 
-      const response = await fetch("/api/new-community", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(createCommunityForm),
+      const res = await fetch("/api/check-discord-bot", {
+        method: "GET",
       });
 
-      await response.json();
-      setSuccessMessage(true);
-      setLoading(false);
+      if (res.status == 200) {
+        // creating community clone
+        await Moralis.enableWeb3();
+        const methodParams = {
+          abi: cloneFactoryabi,
+          contractAddress: "0x1EEB3f763123feF02b530e2577a00d9276d71da5",
+          functionName: "createNewCommunity",
+        };
+        await runContractFunction({
+          chain: "rinkeby",
+          params: methodParams,
+          onSuccess: handleSuccess,
+          onError: (err) => console.log(err),
+        });
+
+        console.log(txReceipt);
+
+        setCommunityClone();
+
+        const createCommunityForm = {
+          name,
+          description,
+          logoURL,
+          currentUser,
+          communityClone,
+        };
+        // const response = await fetch("/api/new-community", {
+        //   method: "POST",
+        //   headers: {
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(createCommunityForm),
+        // });
+
+        // await response.json();
+        setSuccessMessage(true);
+        setLoading(false);
+      } else {
+        console.log("pls invite bot to your server");
+        // display error message in frontend
+      }
     } catch (err) {
       console.log(err);
     }
@@ -131,6 +168,17 @@ export const Web3Provider = ({ children }) => {
   const handleCollectionTotalSupply = (e) => {
     e.preventDefault();
     setCollectionTotalSuppy(e.target.value);
+  };
+
+  const handleSuccess = async (tx) => {
+    const receipt = await tx.wait(1);
+    setTxReceipt(receipt);
+    dispatch({
+      type: "success",
+      message: "New Community",
+      title: "New Community Created!",
+      position: "topR",
+    });
   };
 
   const submitAddCollectionForm = async (e) => {

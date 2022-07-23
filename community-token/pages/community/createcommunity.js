@@ -11,6 +11,7 @@ export default function CreateCommunity() {
     handleLogoURL,
     submitCreateCommunityForm,
   } = useWeb3Context();
+
   return (
     <div className="bg-community-background bg-cover bg-center">
       <div className="">
