@@ -5,35 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Account() {
-
   const communityOwnerContentList = [
-    {
-      id: "rewards",
-      title: "View My Rewards",
-      link: "/community/rewards",
-    },
-    {
-      id: "mycommunity",
-      title: "View My Community",
-      link: "/community",
-    },
-    {
-      id: "joinedcommunities",
-      title: "View Joined Communites",
-      link: "/community/joined",
-    },
-  ];
-
-  const communityMemberContentList = [
     {
       id: "createnewcommunity",
       title: "Create New Community",
       link: "/community/createnew",
     },
     {
-      id: "rewards",
-      title: "View My Rewards",
-      link: "/community/rewards",
+      id: "mycommunity",
+      title: "View My Communities",
+      link: "/community",
     },
     {
       id: "joinedcommunities",
@@ -76,24 +57,6 @@ export default function Account() {
                 </button>
               </Link>
             ))}
-
-            {/** Community Member Content */}
-            {/* {communityMemberContentList.map((content) => (
-              <Link key={content.id} href={content.link}>
-                <button className={contentStyle} key={content.id}>
-                  {content.title}
-                  <div className={buttonStyle} key={content.id}>
-                    <Image
-                      key={content.id}
-                      src={buttonImg}
-                      alt="Button"
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                </button>
-              </Link>
-            ))} */}
           </div>
           {/** Desktop */}
           <Link href="/explore">
