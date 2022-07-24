@@ -221,6 +221,7 @@ export const Web3Provider = ({ children }) => {
         handleCollectionTotalSupply,
         handleCollectionJPEG,
         submitAddCollectionForm,
+        currentUser,
       }}
     >
       {children}

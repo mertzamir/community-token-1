@@ -3,8 +3,12 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import { useWeb3Context } from "../../utils/web3context";
 
 export default function Account() {
+  const { currentUser } = useWeb3Context();
+  const path = currentUser.toString();
+
   const communityOwnerContentList = [
     {
       id: "createnewcommunity",
@@ -14,12 +18,12 @@ export default function Account() {
     {
       id: "mycommunity",
       title: "View My Communities",
-      link: "/community",
+      link: "/community/my-communities/" + path,
     },
     {
       id: "joinedcommunities",
       title: "View Joined Communites",
-      link: "/community/joined",
+      link: "/community/joined/",
     },
   ];
 
@@ -36,7 +40,7 @@ export default function Account() {
       <div className={styles.container}>
         <main className={styles.main}>
           <div className="md:text-[4vh] text-[4vh] mt-12 text-white">
-            Welcome
+            Welcome {currentUser}
           </div>
           <div className="xl:grid xl:grid-cols-3 gap-12 flex justify-center flex-wrap">
             {/** Community Owner Content */}
