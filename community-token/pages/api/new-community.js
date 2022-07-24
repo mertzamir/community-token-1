@@ -8,8 +8,6 @@ export default async function handler(req, res) {
   const appId = process.env.APP_ID;
   const masterKey = process.env.MASTER_KEY;
 
-  console.log("serverUrl", serverUrl);
-
   const ipfs = create("https://ipfs.infura.io:5001");
 
   const body = req.body;
@@ -33,6 +31,17 @@ export default async function handler(req, res) {
   const query = new Moralis.Query(communityClass);
   query.equalTo("Name", body.name);
   const Community = await query.first({ useMasterKey: true });
+
+  /* store communityId in db under user who created */
+  const currentUser = body.currentUser.toString();
+  const userInfoClass = Moralis.Object.extend("UserInfo");
+  const userInfo = new userInfoClass();
+  userInfo.set("EthAddress", currentUser);
+  await userInfo.save();
+  const myCommunities = userInfo.get("MyCommunities");
+  myCommunities.push(Community.id);
+  userInfo.set("MyCommunities", myCommunities);
+  await userInfo.save();
 
   /* send "community created" message to server via bot */
   res.status(200).json(Community.id);

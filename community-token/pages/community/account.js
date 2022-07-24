@@ -7,7 +7,7 @@ import { useWeb3Context } from "../../utils/web3context";
 
 export default function Account() {
   const { currentUser } = useWeb3Context();
-  const path = currentUser.toString();
+  const path1 = currentUser.toString();
 
   const communityOwnerContentList = [
     {
@@ -18,7 +18,7 @@ export default function Account() {
     {
       id: "mycommunity",
       title: "View My Communities",
-      link: "/community/my-communities/" + path,
+      link: "/community/my-communities/" + path1,
     },
     {
       id: "joinedcommunities",

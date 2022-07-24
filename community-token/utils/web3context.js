@@ -28,7 +28,6 @@ export const Web3Provider = ({ children }) => {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState("");
   const [bufferArray, setBufferArray] = useState([]);
-  // const [communityClone, setCommunityClone] = useState("");
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
   const { authenticate, logout, isAuthenticated, user, Moralis } = useMoralis();
