@@ -18,7 +18,7 @@ export default function Explore(props) {
             {communities.map((community, index) => (
               <div
                 key={index}
-                className="bg-white font-bold  rounded-lg border-white border-8"
+                className="bg-white font-bold rounded-lg border-white border-8"
               >
                 <div className="flex justify-center">
                   <img
@@ -26,8 +26,17 @@ export default function Explore(props) {
                     className="w-[370px] h-[360px] rounded-lg "
                   />
                 </div>
-                <div className="text-center">{community.name}</div>
-                <div className="text-center">{community.description}</div>
+                <div className="text-center mt-4 text-[#23024d]">
+                  {community.name}
+                </div>
+                <div className="text-center text-[#23024d]">
+                  {community.description}
+                </div>
+                <div className="flex justify-center">
+                  <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                    Join Community
+                  </button>
+                </div>
               </div>
             ))}
           </div>
