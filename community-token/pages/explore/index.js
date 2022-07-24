@@ -45,9 +45,9 @@ export default function Explore(props) {
                 <div className="text-center mt-4 text-[#23024d]">
                   {community.name}
                 </div>
-                <div className="text-center text-[#23024d]">
+                {/* <div className="text-center text-[#23024d]">
                   {community.description}
-                </div>
+                </div> */}
                 <div className="flex justify-center">
                   <button
                     onClick={() => openIndividualModal(community)}

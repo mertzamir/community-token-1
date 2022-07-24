@@ -76,7 +76,7 @@ export default function JoinCommuntiyModal({ clickedCommunity, closeModal }) {
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="px-16 font-bold py-2  bg-white rounded-full text-[#23024d] hover:bg-gray-100"
+                    className="px-16 font-bold py-4  bg-white rounded-full text-[#23024d] hover:bg-gray-100"
                   >
                     Join {clickedCommunity.name}
                   </button>

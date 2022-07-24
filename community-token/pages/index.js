@@ -1,12 +1,27 @@
+import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Nav from "../components/Nav";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Footer from "../components/Footer";
+import JoinCommuntiyModal from "../components/JoinCommunityModal";
 
 export default function Home(props) {
+  const [openModal, setOpenModal] = useState();
+  const [clickedCommunity, setClickedCommunity] = useState(null);
   let communities = props.communities;
+
+  const openIndividualModal = (community) => {
+    setOpenModal(true);
+    console.log(community);
+    setClickedCommunity(community);
+  };
+
+  const closeIndividualModal = (community) => {
+    setOpenModal(false);
+    setClickedCommunity(community);
+  };
   return (
     <div className="bg-home-background bg-no-repeat bg-cover">
       <div className="">
@@ -52,14 +67,31 @@ export default function Home(props) {
                     <div className="text-center mt-4 text-[#23024d]">
                       {communities[communities.length - 1].name}
                     </div>
-                    <div className="text-center text-[#23024d]">
+                    {/* <div className="text-center text-[#23024d]">
                       {communities[communities.length - 1].description}
-                    </div>
+                    </div> */}
                     <div className="flex justify-center">
-                      <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                      <button
+                        onClick={() =>
+                          openIndividualModal(
+                            communities[communities.length - 1]
+                          )
+                        }
+                        className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white"
+                      >
                         Join Community
                       </button>
                     </div>
+                    {openModal && (
+                      <JoinCommuntiyModal
+                        id={communities.length - 1}
+                        key={communities.length - 1}
+                        clickedCommunity={clickedCommunity}
+                        closeModal={() =>
+                          closeIndividualModal(clickedCommunity)
+                        }
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -84,14 +116,27 @@ export default function Home(props) {
                   <div className="text-center mt-4 text-[#23024d]">
                     {communities[communities.length - 1].name}
                   </div>
-                  <div className="text-center text-[#23024d]">
+                  {/* <div className="text-center text-[#23024d]">
                     {communities[communities.length - 1].description}
-                  </div>
+                  </div> */}
                   <div className="flex justify-center">
-                    <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                    <button
+                      onClick={() =>
+                        openIndividualModal(communities[communities.length - 1])
+                      }
+                      className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white"
+                    >
                       Join Community
                     </button>
                   </div>
+                  {openModal && (
+                    <JoinCommuntiyModal
+                      id={communities.length - 1}
+                      key={communities.length - 1}
+                      clickedCommunity={clickedCommunity}
+                      closeModal={() => closeIndividualModal(clickedCommunity)}
+                    />
+                  )}
                 </div>
               </div>
               <Link href="/explore">
@@ -152,6 +197,7 @@ export async function getServerSideProps() {
   // query.equalTo("objectId" , index);
   const results = await query.find();
 
+  /// need to improve this by just using find function to find last one added
   for (let i = 0; i < results.length; i++) {
     const community = {
       name: results[i].get("Name"),
