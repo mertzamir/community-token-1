@@ -1,9 +1,24 @@
+import React, { useState } from "react";
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import JoinCommuntiyModal from "../../components/JoinCommunityModal";
 
 export default function Explore(props) {
+  const [openModal, setOpenModal] = useState();
+  const [clickedCommunity, setClickedCommunity] = useState(null);
   let communities = props.communities;
+
+  const openIndividualModal = (community) => {
+    setOpenModal(true);
+    setClickedCommunity(community);
+  };
+
+  const closeIndividualModal = (community) => {
+    setOpenModal(false);
+    setClickedCommunity(community);
+  };
+
   return (
     <div className="bg-[#22014d]">
       <div className="">
@@ -17,6 +32,7 @@ export default function Explore(props) {
           <div className=" xl:grid xl:grid-cols-3 md:grid md:grid-cols-2 gap-12 flex justify-center flex-wrap">
             {communities.map((community, index) => (
               <div
+                id={index}
                 key={index}
                 className="bg-white font-bold rounded-lg border-white border-8"
               >
@@ -33,10 +49,21 @@ export default function Explore(props) {
                   {community.description}
                 </div>
                 <div className="flex justify-center">
-                  <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                  <button
+                    onClick={() => openIndividualModal(community)}
+                    className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white"
+                  >
                     Join Community
                   </button>
                 </div>
+                {openModal && (
+                  <JoinCommuntiyModal
+                    id={index}
+                    key={index}
+                    clickedCommunity={clickedCommunity}
+                    closeModal={() => closeIndividualModal(clickedCommunity)}
+                  />
+                )}
               </div>
             ))}
           </div>

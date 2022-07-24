@@ -38,6 +38,7 @@ export const Web3Provider = ({ children }) => {
   const [collectionJPEG, setCollectionJPEG] = useState();
   const [collectionTotalSupply, setCollectionTotalSuppy] = useState();
 
+  const [discordName, setDiscordName] = useState("");
   // Wallet configuration
   const metaMaskLogin = async () => {
     try {
@@ -199,7 +200,13 @@ export const Web3Provider = ({ children }) => {
     }
   };
 
-  useEffect(() => { }, [user]);
+  // Join Community
+  const handleDiscordName = (e) => {
+    e.preventDefault();
+    setDiscordName(e.target.value);
+  };
+
+  useEffect(() => {}, [user]);
 
   return (
     <Web3Context.Provider
@@ -212,6 +219,7 @@ export const Web3Provider = ({ children }) => {
         handleName,
         handleDescription,
         handleBufferArray,
+        handleDiscordName,
         loading,
         successMessage,
         submitCreateCommunityForm,
