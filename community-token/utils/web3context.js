@@ -121,7 +121,6 @@ export const Web3Provider = ({ children }) => {
           onError: (err) => console.log(err),
         });
 
-        setSuccessMessage(true);
         setLoading(false);
       } else {
         console.log("pls invite bot to your server");
@@ -173,12 +172,7 @@ export const Web3Provider = ({ children }) => {
       body: JSON.stringify(createCommunityForm),
     });
     console.log("success handled!");
-    // dispatch({
-    //   type: "success",
-    //   message: "New Community",
-    //   title: "New Community Created!",
-    //   position: "topR",
-    // });
+    setSuccessMessage(true);
   };
 
   const submitAddCollectionForm = async (e) => {
