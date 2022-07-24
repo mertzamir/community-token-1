@@ -29,5 +29,11 @@ export default async function handler(req, res) {
   community.set("CloneAddress", body.communityClone);
   await community.save();
 
+  /* query db for community ID */
+  const query = new Moralis.Query(communityClass);
+  query.equalTo("Name", body.name);
+  const Community = await query.first({ useMasterKey: true });
+
   /* send "community created" message to server via bot */
+  res.status(200).json(Community.id);
 }

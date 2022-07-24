@@ -172,7 +172,10 @@ export const Web3Provider = ({ children }) => {
       },
       body: JSON.stringify(createCommunityForm),
     });
-    console.log("success handled!");
+    const path = await response.json();
+    // console.log(response.)
+    router.push("/community/details/" + path);
+
     // dispatch({
     //   type: "success",
     //   message: "New Community",
