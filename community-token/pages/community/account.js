@@ -9,7 +9,7 @@ export default function Account() {
     {
       id: "createnewcommunity",
       title: "Create New Community",
-      link: "/community/createnew",
+      link: "/community/createcommunity",
     },
     {
       id: "mycommunity",

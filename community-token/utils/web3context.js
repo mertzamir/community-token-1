@@ -27,7 +27,7 @@ export const Web3Provider = ({ children }) => {
 
   const [name, setName] = useState(null);
   const [description, setDescription] = useState("");
-  const [logoURL, setLogoURL] = useState([]);
+  const [bufferArray, setBufferArray] = useState([]);
   // const [communityClone, setCommunityClone] = useState("");
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
@@ -86,9 +86,15 @@ export const Web3Provider = ({ children }) => {
     setDescription(e.target.value);
   };
 
-  const handleLogoURL = (e) => {
+  const handleBufferArray = (e) => {
     e.preventDefault();
-    setLogoURL(captureImage(e));
+    const file = e.target.files[0];
+    const reader = new window.FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onload = () => {
+      setBufferArray(Buffer(reader.result));
+    };
   };
 
   const submitCreateCommunityForm = async (e) => {
@@ -154,7 +160,7 @@ export const Web3Provider = ({ children }) => {
     const createCommunityForm = {
       name,
       description,
-      logoURL,
+      bufferArray,
       currentUser,
       communityClone,
     };
@@ -204,7 +210,7 @@ export const Web3Provider = ({ children }) => {
         logoutWallet,
         handleName,
         handleDescription,
-        handleLogoURL,
+        handleBufferArray,
         loading,
         successMessage,
         submitCreateCommunityForm,

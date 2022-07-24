@@ -8,7 +8,7 @@ export default function CreateCommunity() {
     success,
     handleName,
     handleDescription,
-    handleLogoURL,
+    handleBufferArray,
     submitCreateCommunityForm,
   } = useWeb3Context();
 
@@ -53,7 +53,7 @@ export default function CreateCommunity() {
                 Upload Logo
               </label>
               <input
-                onChange={handleLogoURL}
+                onChange={handleBufferArray}
                 required
                 type="file"
                 className="cursor-pointer block w-full text-sm text-white file:mr-4 file:py-2 md:file:px-8 file:px-2 file:py-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-[#23024d] hover:file:bg-gray-100"
