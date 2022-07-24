@@ -121,7 +121,6 @@ export const Web3Provider = ({ children }) => {
           onError: (err) => console.log(err),
         });
 
-        setSuccessMessage(true);
         setLoading(false);
       } else {
         console.log("pls invite bot to your server");
