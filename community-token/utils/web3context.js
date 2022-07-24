@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import { router } from "next/router";
 import { cloneFactoryabi } from "../components/smart-contract-info";
+import { useNotification } from "web3uikit";
 
 export const Web3Context = createContext(null);
 
@@ -27,8 +28,7 @@ export const Web3Provider = ({ children }) => {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState("");
   const [logoURL, setLogoURL] = useState([]);
-  const [communityClone, setCommunityClone] = useState("");
-  const [txReceipt, setTxReceipt] = useState(null);
+  // const [communityClone, setCommunityClone] = useState("");
   const [successMessage, setSuccessMessage] = useState();
   const [loading, setLoading] = useState(false);
   const { authenticate, logout, isAuthenticated, user, Moralis } = useMoralis();
@@ -95,7 +95,6 @@ export const Web3Provider = ({ children }) => {
     try {
       e.preventDefault();
       setLoading(true);
-      console.log(name);
 
       const res = await fetch("/api/check-discord-bot", {
         method: "GET",
@@ -106,7 +105,7 @@ export const Web3Provider = ({ children }) => {
         await Moralis.enableWeb3();
         const methodParams = {
           abi: cloneFactoryabi,
-          contractAddress: "0x1EEB3f763123feF02b530e2577a00d9276d71da5",
+          contractAddress: "0xBB4a18773C5F036Ad821059dd3574320934b567F",
           functionName: "createNewCommunity",
         };
         await runContractFunction({
@@ -116,27 +115,6 @@ export const Web3Provider = ({ children }) => {
           onError: (err) => console.log(err),
         });
 
-        console.log(txReceipt);
-
-        setCommunityClone();
-
-        const createCommunityForm = {
-          name,
-          description,
-          logoURL,
-          currentUser,
-          communityClone,
-        };
-        // const response = await fetch("/api/new-community", {
-        //   method: "POST",
-        //   headers: {
-        //     Accept: "application/json",
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(createCommunityForm),
-        // });
-
-        // await response.json();
         setSuccessMessage(true);
         setLoading(false);
       } else {
@@ -172,13 +150,29 @@ export const Web3Provider = ({ children }) => {
 
   const handleSuccess = async (tx) => {
     const receipt = await tx.wait(1);
-    setTxReceipt(receipt);
-    dispatch({
-      type: "success",
-      message: "New Community",
-      title: "New Community Created!",
-      position: "topR",
+    const communityClone = receipt.events[2].args[0].toString();
+    const createCommunityForm = {
+      name,
+      description,
+      logoURL,
+      currentUser,
+      communityClone,
+    };
+    const response = await fetch("/api/new-community", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(createCommunityForm),
     });
+    console.log("success handled!");
+    // dispatch({
+    //   type: "success",
+    //   message: "New Community",
+    //   title: "New Community Created!",
+    //   position: "topR",
+    // });
   };
 
   const submitAddCollectionForm = async (e) => {
