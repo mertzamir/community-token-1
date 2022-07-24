@@ -69,17 +69,11 @@ export default async function handler(req, res) {
     await collection.save();
 
     // UPLOAD NFT METADATA TO IPFS VIA PINATA
-    let baseMetadataURI = "https://gateway.pinata.cloud/ipfs/QmfPCgxbHWkNv4bMJHpoKXBohnV4umzpY3D9YfZQd5HwZF"
+    let baseMetadataURI = "https://gateway.pinata.cloud/ipfs/"
     const appDir = __dirname.substring(0, __dirname.length - 22);
     const sourcePath = appDir + 'tempFiles/';
-    pinata.pinFromFS(sourcePath).then((result) => {
-        //handle results here
-        console.log("Uploaded Metadata Result", result);
-        baseMetadataURI += result.IpfsHash;
-    }).catch((err) => {
-        //handle error here
-        console.log(err);
-    });
+    const cid = await pinata.pinFromFS(sourcePath);
+    baseMetadataURI += cid.IpfsHash
 
     // TODO: DELETE LOCAL METADATA FILES
 
