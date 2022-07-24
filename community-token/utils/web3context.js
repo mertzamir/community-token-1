@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import { router } from "next/router";
-import { cloneFactoryabi } from "../components/smart-contract-info";
+import { cloneFactoryABI } from "../components/smart-contract-info";
 import { useNotification } from "web3uikit";
 
 export const Web3Context = createContext(null);
@@ -110,7 +110,7 @@ export const Web3Provider = ({ children }) => {
         // creating community clone
         await Moralis.enableWeb3();
         const methodParams = {
-          abi: cloneFactoryabi,
+          abi: cloneFactoryABI,
           contractAddress: "0xBB4a18773C5F036Ad821059dd3574320934b567F",
           functionName: "createNewCommunity",
         };
@@ -200,7 +200,7 @@ export const Web3Provider = ({ children }) => {
     }
   };
 
-  useEffect(() => {}, [user]);
+  useEffect(() => { }, [user]);
 
   return (
     <Web3Context.Provider

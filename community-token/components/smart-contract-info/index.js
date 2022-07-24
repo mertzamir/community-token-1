@@ -1,2 +1,3 @@
-const cloneFactoryabi = require('./cloneFactoryabi.json')
-module.exports = { cloneFactoryabi }
+const cloneFactoryABI = require('./cloneFactoryabi.json')
+const communityABI = require('./communityabi.json')
+module.exports = { cloneFactoryABI, communityABI }

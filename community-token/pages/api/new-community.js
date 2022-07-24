@@ -37,3 +37,11 @@ export default async function handler(req, res) {
   /* send "community created" message to server via bot */
   res.status(200).json(Community.id);
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+};

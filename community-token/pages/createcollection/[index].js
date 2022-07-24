@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 import Nav from "../../components/Nav";
 import { useWeb3Context } from "../../utils/web3context";
+import { communityABI } from "../../components/smart-contract-info";
 
 export default function CreateCollection(props) {
   const router = useRouter();
@@ -37,34 +38,34 @@ export default function CreateCollection(props) {
     }; ""
     console.log("data", data);
 
-    // const res = await fetch("/api/store-collection", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json, text/plain, */*",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-    // const resData = await res.json()
-    // console.log("resData: ", resData)
+    const res = await fetch("/api/store-collection", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resData = await res.json()
+    console.log("resData: ", resData)
+    console.log("addr", resData.contractAddress)
 
-    // const methodParams = {
-    //   abi: abi,
-    //   contractAddress: resData.contractAddress,
-    //   functionName: "deployERC1155",
-    //   params: {
-    //     _contractName: resData.contractName,
-    //     _uris: resData.tokenURIs,
-    //     _tokenNames: resData.tokenNames,
-    //     _ids: resData.tokenIds,
-    //     _supplies: resData.tokenSupplies
-    //   }
-    // }
+    const methodParams = {
+      abi: communityABI,
+      contractAddress: resData.contractAddress,
+      functionName: "createCollection",
+      params: {
+        _baseMetadataURI: resData.baseMetadataURI,
+        _tokenIds: resData.tokenIds,
+        _initialSupplies: resData.tokenSupplies,
+      }
+    }
 
-    // await runContractFunction({
-    //   params: methodParams,
-    //   onError: (err) => console.log(err)
-    // })
+    await Moralis.enableWeb3()
+    await runContractFunction({
+      params: methodParams,
+      onError: (err) => console.log(err)
+    })
 
     // router.push("/owner-dashboard/" + communityId);
   }

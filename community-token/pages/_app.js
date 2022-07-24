@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import { MoralisProvider } from "react-moralis";
 import { Web3Provider } from "../utils/web3context";
+global.__basedir = __dirname;
 
 function MyApp({ Component, pageProps }) {
   return (
