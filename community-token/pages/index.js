@@ -5,7 +5,8 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Footer from "../components/Footer";
 
-export default function Home() {
+export default function Home(props) {
+  let communities = props.communities;
   return (
     <div className="bg-home-background bg-no-repeat bg-cover">
       <div className="">
@@ -21,9 +22,7 @@ export default function Home() {
         <main className={styles.main}>
           <div className="lg:mt-24">
             {/* Desktop  */}
-            <div className="lg:flex justify-end mr-8 text-white text-lg hidden">
-              New Featured Collection
-            </div>
+
             <div className="lg:grid grid-cols-3 gap-2 xl:mt-8 items-center">
               <div className="col-span-2 text-white xl:text-[6vh] lg:text-[6.5vh] md:text-5xl lg:text-left  text-center text-[4vh] font-bold leading-none">
                 Create, join, <br />
@@ -35,43 +34,75 @@ export default function Home() {
               </div>
 
               {/* Mobile  */}
-              <div className="text-center text-white mt-12  text-lg md:hidden">
-                New Featured Collection
-              </div>
               <div className="flex justify-center mt-4 mb-4  lg:hidden">
-                {/** Will replace with moralis web 3 ui kit */}{" "}
-                <Image
-                  className="rounded-3xl "
-                  src="/sappy-seal.png"
-                  alt="Sappy Seal NFT"
-                  width={300}
-                  height={300}
-                />
-              </div>
-              <div className="text-center  text-white text-lg md:hidden">
-                Sappy Seals
+                <div className="flex rounded-3xl lg:hidden lg:ml-18">
+                  <div
+                    key={0}
+                    className="bg-white font-bold rounded-lg border-white border-8"
+                  >
+                    <p className="text-center mb-4 text-[#23024d]">
+                      New Featured Collection
+                    </p>
+                    <div className="flex justify-center">
+                      <img
+                        src={communities[communities.length - 1].imagePath}
+                        className="w-[370px] h-[360px] rounded-lg "
+                      />
+                    </div>
+                    <div className="text-center mt-4 text-[#23024d]">
+                      {communities[communities.length - 1].name}
+                    </div>
+                    <div className="text-center text-[#23024d]">
+                      {communities[communities.length - 1].description}
+                    </div>
+                    <div className="flex justify-center">
+                      <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                        Join Community
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Desktop */}
 
               <div className="lg:flex rounded-3xl hidden lg:ml-18">
-                <Image
-                  className="rounded-3xl"
-                  src="/sappy-seal.png"
-                  alt="Sappy Seal NFT"
-                  width={300}
-                  height={300}
-                />
+                <div
+                  key={0}
+                  className="bg-white font-bold rounded-lg border-white border-8"
+                >
+                  <p className="text-center mb-4 text-[#23024d]">
+                    New Featured Collection
+                  </p>
+
+                  <div className="flex justify-center">
+                    <img
+                      src={communities[communities.length - 1].imagePath}
+                      className="w-[370px] h-[360px] rounded-lg "
+                    />
+                  </div>
+                  <div className="text-center mt-4 text-[#23024d]">
+                    {communities[communities.length - 1].name}
+                  </div>
+                  <div className="text-center text-[#23024d]">
+                    {communities[communities.length - 1].description}
+                  </div>
+                  <div className="flex justify-center">
+                    <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                      Join Community
+                    </button>
+                  </div>
+                </div>
               </div>
               <Link href="/explore">
-                <a className="md:flex justify-center ml-8 mt-4 relative text-center text-black hidden ">
+                <a className="md:flex justify-center ml-8 lg:-mt-24 md:ml-4  relative text-center text-black hidden ">
                   <Image
                     src="/button.png"
                     alt="Explore Button"
                     width={190}
                     height={60}
                   />
-                  <div className="absolute inset-x-0.5 top-4  text-[#23024d] font-bold text-lg ">
+                  <div className="absolute inset-x-0.5 top-4 text-[#23024d] font-bold text-lg ">
                     Explore
                   </div>
                 </a>
@@ -94,9 +125,6 @@ export default function Home() {
                   </a>
                 </Link>
               </div>
-              <div className="md:flex justify-end mr-24 text-white text-lg hidden">
-                Sappy Seals
-              </div>
             </div>
           </div>
         </main>
@@ -104,4 +132,44 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const Moralis = require("moralis/node");
+  const communities = [];
+
+  // MORALIS INIT CODE
+  const serverUrl = process.env.SERVER_URL;
+  const appId = process.env.APP_ID;
+  const masterKey = process.env.MASTER_KEY;
+  await Moralis.start({ serverUrl, appId, masterKey });
+
+  // GET COMMUNITIES
+  // const { index } = context.query;
+  // console.log("index", index);
+  const Communities = Moralis.Object.extend("Communities");
+  const query = new Moralis.Query(Communities);
+  // query.equalTo("objectId" , index);
+  const results = await query.find();
+
+  for (let i = 0; i < results.length; i++) {
+    const community = {
+      name: results[i].get("Name"),
+      description: results[i].get("Description"),
+      imagePath: results[i].get("imagePath"),
+    };
+    communities.push(community);
+  }
+
+  console.log(communities);
+
+  return {
+    props: {
+      communities: communities.map((community) => ({
+        name: community.name,
+        description: community.description,
+        imagePath: community.imagePath,
+      })),
+    },
+  };
 }
