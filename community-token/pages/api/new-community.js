@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   const community = new communityClass();
   community.set("Name", body.name);
   community.set("Description", body.description);
-  community.set("LogoURL", bufferArray);
+  community.set("imagePath", bufferArray);
   community.set("OwnerAddress", body.currentUser);
   community.set("CloneAddress", body.communityClone);
   await community.save();
