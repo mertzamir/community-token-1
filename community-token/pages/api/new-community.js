@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   /* upload community logo to ipfs */
   const upload = await ipfs.add(body.bufferArray.data);
-  const imagePath = "https://gateway.ipfs.io/ipfs/" + upload.path;
+  const bufferArray = "https://gateway.ipfs.io/ipfs/" + upload.path;
 
   /* store community data in moralis database */
   await Moralis.start({ serverUrl, appId, masterKey });
@@ -24,10 +24,16 @@ export default async function handler(req, res) {
   const community = new communityClass();
   community.set("Name", body.name);
   community.set("Description", body.description);
-  community.set("imagePath", imagePath);
+  community.set("imagePath", bufferArray);
   community.set("OwnerAddress", body.currentUser);
   community.set("CloneAddress", body.communityClone);
   await community.save();
 
+  /* query db for community ID */
+  const query = new Moralis.Query(communityClass);
+  query.equalTo("Name", body.name);
+  const Community = await query.first({ useMasterKey: true });
+
   /* send "community created" message to server via bot */
+  res.status(200).json(Community.id);
 }
