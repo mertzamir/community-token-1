@@ -1,5 +1,50 @@
-export default function MyCommunities() {
-  return <h1>hello</h1>;
+import styles from "../../../styles/Home.module.css";
+import Nav from "../../../components/Nav";
+import Footer from "../../../components/Footer";
+
+export default function MyCommunities(props) {
+  let communities = props.communities;
+  return (
+    <div className="bg-[#22014d]">
+      <div className="">
+        <Nav />
+      </div>
+      <div className={styles.container}>
+        <main className={styles.main}>
+          <div className="md:text-[6vh] text-[4vh] mt-12 mb-12 text-white">
+            My Communities
+          </div>
+          <div className=" xl:grid xl:grid-cols-3 md:grid md:grid-cols-2 gap-12 flex justify-center flex-wrap">
+            {communities.map((community, index) => (
+              <div
+                key={index}
+                className="bg-white font-bold rounded-lg border-white border-8"
+              >
+                <div className="flex justify-center">
+                  <img
+                    src={community.imagePath}
+                    className="w-[370px] h-[360px] rounded-lg "
+                  />
+                </div>
+                <div className="text-center mt-4 text-[#23024d]">
+                  {community.name}
+                </div>
+                <div className="text-center text-[#23024d]">
+                  {community.description}
+                </div>
+                <div className="flex justify-center">
+                  <button className="mt-4 md:px-16 px-4 font-bold py-4 bg-[#23024d] mb-2  rounded-full hover:bg-gray-500 block cursor-pointer text-center text-white">
+                    View Community
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
 }
 
 export async function getServerSideProps(context) {
@@ -37,7 +82,7 @@ export async function getServerSideProps(context) {
         id: community.id,
         name: community.get("Name"),
         description: community.get("Description"),
-        image: community.get("imagePath"),
+        imagePath: community.get("imagePath"),
       })),
     },
   };
