@@ -32,7 +32,7 @@ export default function CreateCommunity() {
               rel="noreferrer"
               href="https://discord.com/api/oauth2/authorize?client_id=996115272677195789&permissions=8&scope=applications.commands+bot"
             >
-              <button className="md:px-24 px-4 font-bold py-4 bg-white rounded-full text-[#23024d] hover:bg-gray-100 block cursor-pointer text-center text-white">
+              <button className="md:px-16 px-4 font-bold py-4 bg-white rounded-full text-[#23024d] hover:bg-gray-100 block cursor-pointer text-center text-white">
                 Invite discord bot
               </button>
             </a>
@@ -42,7 +42,7 @@ export default function CreateCommunity() {
               </label>
               <input
                 onChange={handleName}
-                className="rounded-2xl  px-36 h-12 pl-2 text-center"
+                className="rounded-2xl px-16 h-12"
                 minLength="1"
                 maxLength="30"
                 type="text"
@@ -53,7 +53,7 @@ export default function CreateCommunity() {
               </label>
               <textarea
                 onChange={handleDescription}
-                className="rounded-2xl h-24 pl-2 text-center px-36"
+                className="rounded-2xl h-24 px-16"
                 minLength="10"
                 maxLength="80"
                 type="text"
