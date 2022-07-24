@@ -22,49 +22,44 @@ export default function CreateCommunity() {
           <div className="md:mb-24 mb-16 lg:mb-24 lg:text-[5vh] md:text-[3vh] text-[20px] text-center lg:mt-12 lg:mb-12 md:mt-28 md:mb-[10px] mt-12  text-white">
             Create New Community
           </div>
-          {!success ? (
-            <form
-              onSubmit={submitCreateCommunityForm}
-              className="bg-[#23024d] md:px-24 md:py-12 px-12 py-12 rounded-2xl flex justify-center grid grid-cols-1 gap-4 opacity-75 border-4 border-white"
+          <div className="bg-[#23024d] md:px-24 md:py-12 px-12 py-12 rounded-2xl flex justify-center grid grid-cols-1 gap-4 opacity-75 border-4 border-white">
+            <label className="block cursor-pointer text-center text-white">
+              Invite bot
+            </label>
+            <a
+              className="flex justify-center"
+              target="_blank"
+              rel="noreferrer"
+              href="https://discord.com/api/oauth2/authorize?client_id=996115272677195789&permissions=8&scope=applications.commands+bot"
             >
-              <label className="block cursor-pointer text-center text-white">
+              <button className="md:px-24 px-4 font-bold py-4 bg-white rounded-full text-[#23024d] hover:bg-gray-100 block cursor-pointer text-center text-white">
+                Invite discord bot
+              </button>
+            </a>
+            <form onSubmit={submitCreateCommunityForm}>
+              <label className="block cursor-pointer text-center mb-2 text-white">
                 Name
               </label>
               <input
                 onChange={handleName}
-                className="rounded-2xl  h-12 pl-2 text-center"
+                className="rounded-2xl  px-36 h-12 pl-2 text-center"
                 minLength="1"
                 maxLength="30"
                 type="text"
                 required
               ></input>
-              <label className="block cursor-pointer text-center text-white">
+              <label className="block cursor-pointer text-center mt-4 mb-2 text-white">
                 Short Description
               </label>
               <textarea
                 onChange={handleDescription}
-                className="rounded-2xl h-24 pl-2 text-center"
+                className="rounded-2xl h-24 pl-2 text-center px-36"
                 minLength="10"
                 maxLength="80"
                 type="text"
                 required
               ></textarea>
-              <label className="block cursor-pointer text-center text-white">
-                Invite bot
-              </label>
-              <div className=" flex justify-center">
-                <a
-                  className="flex justify-center"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://discord.com/api/oauth2/authorize?client_id=996115272677195789&permissions=8&scope=applications.commands+bot"
-                >
-                  <button className="md:px-24 px-4 font-bold py-4 bg-white rounded-full text-[#23024d] hover:bg-gray-100 block cursor-pointer text-center text-white">
-                    Invite discord bot
-                  </button>
-                </a>
-              </div>
-              <label className="block cursor-pointer text-center text-white">
+              <label className="block cursor-pointer text-center mt-4  mb-2 text-white">
                 Upload Logo
               </label>
               <input
@@ -82,14 +77,13 @@ export default function CreateCommunity() {
                 </button>
               </div>
             </form>
-          ) : (
-            <div className="bg-[#23024d] md:px-24 md:py-12 px-12 py-12 rounded-2xl flex justify-center grid grid-cols-1 gap-4 opacity-75 border-4 border-white">
+          </div>
+          {/* <div className="bg-[#23024d] md:px-24 md:py-12 px-12 py-12 rounded-2xl flex justify-center grid grid-cols-1 gap-4 opacity-75 border-4 border-white">
               <p className="text-center text-white">
                 You&apos;ve successfully created a community. Check it out
                 here.. link here
               </p>
-            </div>
-          )}
+            </div> */}
         </main>
       </div>
     </div>
