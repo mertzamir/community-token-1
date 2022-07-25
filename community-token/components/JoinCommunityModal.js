@@ -1,7 +1,33 @@
+import { useState } from "react";
 import { useWeb3Context } from "../utils/web3context";
 
 export default function JoinCommuntiyModal({ clickedCommunity, closeModal }) {
-  const { currentUser, handleDiscordName } = useWeb3Context();
+  const { currentUser } = useWeb3Context();
+  const [discordName, setDiscordName] = useState("");
+
+  const handleDiscordName = (e) => {
+    e.preventDefault();
+    setDiscordName(e.target.value);
+  };
+
+  async function joinButtonHandler() {
+    const data = {
+      user: currentUser.toString(), //eth address
+      communityName: clickedCommunity.name,
+      discordName: discordName
+    }
+
+    const res = await fetch("/api/join-community", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const resData = await res.json()
+    console.log("result:", resData)
+  }
 
   return (
     <div>
@@ -53,7 +79,7 @@ export default function JoinCommuntiyModal({ clickedCommunity, closeModal }) {
                 <div className="text-sm text-[#23024d]">
                   {clickedCommunity.description}
                 </div>
-                <hr/>
+                <hr />
                 <div className="mt-8 text-[#23024d]">
                   <label>Wallet Address</label>
                 </div>
@@ -77,6 +103,7 @@ export default function JoinCommuntiyModal({ clickedCommunity, closeModal }) {
                   <button
                     type="submit"
                     className="px-16 font-bold py-4  bg-white rounded-full text-[#23024d] hover:bg-gray-100"
+                    onClick={() => joinButtonHandler()}
                   >
                     Join {clickedCommunity.name}
                   </button>
